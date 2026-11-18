@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123d2b">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <title>Request a Quote | TAP MORDULAR</title>
+  <meta name="description" content="Request a buying or rental quote for a custom container conversion from TAP MORDULAR. Provide your use, size, fit-out and delivery details.">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <div class="topline"><div class="wrap"><span>Custom modular buildings, made for your business</span><span>Johannesburg · <a href="tel:+27797230311">079 723 0311</a></span></div></div>
+  <header class="site-header"><div class="wrap nav-row">
+    <a class="brand" href="index.html" aria-label="TAP MORDULAR home"><img class="brand-logo" src="tap-modular-logo.jpg" alt="TAP MORDULAR company logo"></a>
+    <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
+      <a href="about.html">About</a><a href="solutions.html">Solutions</a><a href="projects.html">Projects</a><a href="how-it-works.html">How it works</a><a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions"><a class="button" href="quote.html" aria-current="page">Request a quote</a></div>
+    <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="main-navigation" aria-expanded="false">☰</button>
+  </div></header>
+  <main>
+    <section class="page-banner"><div class="wrap">
+      <p class="breadcrumbs"><a href="index.html">Home</a> / Request a quote</p>
+      <p class="eyebrow">Project enquiry</p>
+      <h1>Tell us what you need.</h1>
+      <p>Share the details below so we can understand your container requirement and respond with the right questions.</p>
+    </div></section>
+    <section class="page-main"><div class="wrap quote-layout">
+      <div class="quote-intro">
+        <p class="eyebrow">A useful starting brief</p>
+        <h2>Clear details help shape a clear quote.</h2>
+        <p>Include your intended use, quantity, approximate size and delivery location. If you’re still deciding, select “not sure” where available.</p>
+        <ul class="check-list"><li>Buying or renting</li><li>Rental period, if applicable</li><li>Fit-out and service requirements</li><li>Delivery site and timing</li></ul>
+        <div class="contact-item"><span class="contact-label">Prefer to speak?</span><a class="contact-value" href="tel:+27797230311">079 723 0311</a></div>
+        <div class="contact-item"><span class="contact-label">Quote enquiries</span><a class="contact-value" href="mailto:Dhehwa@gmail.com">Dhehwa@gmail.com</a></div>
+      </div>
+      <div class="quote-form-card">
+        <div class="form-heading"><h2>Request a container quote</h2><p>Required fields are marked with an asterisk.</p></div>
+        <form id="quote-form">
+          <div class="form-grid">
+            <div class="field"><label for="name">Your name *</label><input id="name" name="Name" autocomplete="name" required></div>
+            <div class="field"><label for="company">Company</label><input id="company" name="Company" autocomplete="organization"></div>
+            <div class="field"><label for="phone">Phone / WhatsApp *</label><input id="phone" name="Phone" type="tel" autocomplete="tel" required></div>
+            <div class="field"><label for="email">Email *</label><input id="email" name="Email" type="email" autocomplete="email" required></div>
+            <div class="field"><label for="purchase-type">Buy or rent? *</label><select id="purchase-type" name="Buy or rent" required><option value="">Select an option</option><option>Buy</option><option>Rent - request availability</option><option>Not sure - please advise</option></select></div>
+            <div class="field"><label for="project-type">What do you need? *</label><select id="project-type" name="Project type" required><option value="">Choose a container use</option><option>Gym / wellness</option><option>Tuck shop / retail</option><option>Clinic / healthcare</option><option>Chiller / cold storage</option><option>Kota / takeaway outlet</option><option>Shisa nyama / restaurant</option><option>Office / site building</option><option>Other custom project</option></select></div>
+            <div class="field field-full" id="rental-duration-field" hidden><label for="rental-duration">How long do you need to rent? *</label><select id="rental-duration" name="Rental duration"><option value="">Select a rental period</option><option>Less than 1 month</option><option>1-3 months</option><option>3-6 months</option><option>6-12 months</option><option>More than 12 months</option><option>Not sure - please advise</option></select></div>
+            <div class="field"><label for="quantity">Number of units *</label><input id="quantity" name="Quantity" type="number" min="1" step="1" inputmode="numeric" placeholder="e.g. 1" required></div>
+            <div class="field"><label for="size">Approximate size</label><select id="size" name="Approximate size"><option value="">Choose or discuss</option><option>10 ft</option><option>20 ft</option><option>40 ft</option><option>Multiple / joined containers</option><option>Not sure - please advise</option></select></div>
+            <div class="field"><label for="fitout">Fit-out required</label><select id="fitout" name="Fit-out"><option value="">Choose or discuss</option><option>Container shell only</option><option>Basic internal finish</option><option>Insulated interior</option><option>Custom fitted / turnkey conversion</option><option>Not sure - please advise</option></select></div>
+            <div class="field"><label for="timeline">When do you need it?</label><select id="timeline" name="Timeline"><option value="">Select timing</option><option>As soon as possible</option><option>Within 1-3 months</option><option>Within 3-6 months</option><option>More than 6 months</option><option>Planning / not sure</option></select></div>
+            <div class="field field-full"><label for="location">Delivery town / suburb and province *</label><input id="location" name="Delivery location" autocomplete="address-level2" placeholder="e.g. Roodepoort, Gauteng" required></div>
+            <div class="field field-full"><label for="requirements">Site access, services and other requirements</label><textarea id="requirements" name="Project details" placeholder="Tell us about delivery access, power or water, openings, equipment, cold-storage requirements or preferred finishes."></textarea></div>
+            <p class="form-help">Submitting opens a pre-filled email addressed to Dhehwa@gmail.com. Review and send it in your email app to complete your enquiry.</p>
+            <button class="button" type="submit">Prepare my quote request</button>
+            <p class="form-status field-full" id="form-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </div></section>
+  </main>
+  <footer class="footer"><div class="wrap footer-row">
+    <div class="footer-brand"><img class="brand-logo" src="tap-modular-logo.jpg" alt=""><div><strong>TAP MORDULAR</strong>Custom modular buildings &amp; container conversions</div></div>
+    <div class="footer-links"><a href="about.html">About</a><a href="solutions.html">Solutions</a><a href="projects.html">Projects</a><a href="contact.html">Contact</a></div>
+    <span>Johannesburg, South Africa</span>
+  </div></footer>
+  <a class="whatsapp-float" href="https://wa.me/27797230311?text=Hello%20TAP%20MORDULAR%2C%20I%20would%20like%20to%20discuss%20a%20container%20project." target="_blank" rel="noopener noreferrer" aria-label="Chat with TAP MORDULAR on WhatsApp"><img src="whatsapp-icon.svg" alt=""></a>
+  <script src="site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123d2b">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <title>TAP MORDULAR | Custom Container Buildings to Buy or Rent</title>
+  <meta name="description" content="Explore custom container buildings from TAP MORDULAR. We design modular spaces for gyms, clinics, retail, food service and more. Request a buying or rental quote in South Africa.">
+  <style>
+    :root {
+      color-scheme: light;
+      --forest: #123d2b;
+      --forest-deep: #0c2d20;
+      --leaf: #2e6848;
+      --lime: #d3e1a4;
+      --sand: #f5f3ed;
+      --paper: #fffefa;
+      --ink: #1c2821;
+      --muted: #647168;
+      --line: #e2e6df;
+      --white: #fff;
+      --shadow: 0 18px 50px rgba(13, 43, 29, .1);
+      --radius: 16px;
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      scroll-behavior: smooth;
+      scroll-padding-top: 96px;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--paper); line-height: 1.65; }
+    body, button, input, select, textarea { font-family: "Segoe UI", Arial, Helvetica, sans-serif; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 3px solid #a7c871;
+      outline-offset: 3px;
+    }
+    .wrap { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+    .topline { color: #eaf1e9; background: var(--forest-deep); font-size: 12px; }
+    .topline .wrap { min-height: 37px; display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+    .topline a { color: #fff; font-weight: 700; }
+
+    .site-header { position: sticky; inset-block-start: 0; z-index: 20; background: #fff; border-bottom: 1px solid rgba(226, 230, 223, .9); }
+    .nav-row { min-height: 82px; display: flex; justify-content: space-between; align-items: center; gap: 28px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; flex: 0 0 auto; }
+    .brand-logo { width: 112px; height: auto; flex: 0 0 auto; background: #fff; object-fit: contain; }
+    .main-nav { display: flex; align-items: center; gap: clamp(18px, 2.5vw, 34px); font-size: 13px; font-weight: 700; color: #35463b; }
+    .main-nav a:hover { color: var(--leaf); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .menu-toggle { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 10px; background: transparent; color: var(--forest); font-size: 22px; cursor: pointer; }
+
+    .button { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 19px; border: 1px solid transparent; border-radius: 7px; background: var(--forest); color: var(--white); font-size: 12px; font-weight: 800; letter-spacing: .045em; text-transform: uppercase; transition: background .2s ease, transform .2s ease, border-color .2s ease; cursor: pointer; }
+    .button:hover { background: var(--forest-deep); transform: translateY(-1px); }
+    .button-light { border-color: rgba(255,255,255,.55); background: transparent; color: #fff; }
+    .button-light:hover { background: rgba(255,255,255,.12); }
+    .button-lime { background: var(--lime); color: var(--forest-deep); }
+    .button-lime:hover { background: #e3edc4; }
+
+    .hero { position: relative; min-height: 620px; display: flex; align-items: center; overflow: hidden; color: #fff; background: var(--forest-deep) url("Assests/render-20260914_172028.jpg") center 48% / cover no-repeat; }
+    .hero::before { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg, rgba(7, 31, 20, .9) 0%, rgba(7, 31, 20, .72) 42%, rgba(7, 31, 20, .1) 100%); }
+    .hero-content { position: relative; z-index: 1; padding-block: 92px 110px; max-width: 720px; }
+    .eyebrow { margin: 0 0 12px; color: var(--leaf); font-size: 11px; font-weight: 900; letter-spacing: .17em; line-height: 1.4; text-transform: uppercase; }
+    .hero .eyebrow { color: var(--lime); }
+    h1, h2, h3, p { margin-block-start: 0; }
+    h1 { max-width: 700px; margin-block-end: 20px; font-size: clamp(44px, 6.7vw, 78px); font-weight: 750; letter-spacing: -.055em; line-height: 1.02; }
+    .hero-copy { max-width: 580px; margin-block-end: 28px; color: rgba(255,255,255,.86); font-size: clamp(16px, 2vw, 19px); }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-note { display: flex; gap: 18px; flex-wrap: wrap; margin-block-start: 36px; color: rgba(255,255,255,.86); font-size: 12px; font-weight: 700; }
+    .hero-note span::before { content: "✓"; margin-inline-end: 8px; color: var(--lime); }
+    .hero-stamp { position: absolute; z-index: 1; right: max(24px, calc((100vw - 1180px) / 2)); bottom: 35px; display: flex; align-items: center; gap: 12px; color: #fff; font-size: 12px; font-weight: 700; }
+    .hero-stamp::before { width: 36px; height: 1px; content: ""; background: var(--lime); }
+
+    .section { padding-block: 88px; }
+    .section-tint { background: var(--sand); }
+    .section-dark { color: #fff; background: var(--forest-deep); }
+    .section-heading { max-width: 690px; margin-block-end: 38px; }
+    .section-heading h2, .about-copy h2 { margin-block-end: 15px; font-size: clamp(32px, 4vw, 48px); letter-spacing: -.045em; line-height: 1.1; }
+    .section-heading p, .about-copy p { margin-block-end: 0; color: var(--muted); font-size: 16px; }
+    .section-dark .section-heading p { color: #cfdbd0; }
+
+    .about-grid { display: grid; grid-template-columns: .94fr 1.06fr; align-items: center; gap: clamp(42px, 7vw, 90px); }
+    .about-copy h2 { max-width: 540px; }
+    .about-copy > p { max-width: 550px; }
+    .proof-points { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 22px; margin-block: 28px 30px; }
+    .proof-point { display: flex; gap: 11px; color: #34443a; font-size: 13px; font-weight: 700; }
+    .proof-point::before { flex: 0 0 21px; width: 21px; height: 21px; display: grid; place-items: center; border-radius: 50%; content: "✓"; background: #e8eee1; color: var(--leaf); font-size: 12px; }
+    .about-image { position: relative; min-height: 455px; overflow: hidden; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .about-image img { width: 100%; height: 100%; min-height: 455px; object-fit: cover; }
+    .image-caption { position: absolute; right: 16px; bottom: 16px; left: 16px; padding: 14px 17px; border: 1px solid rgba(255,255,255,.26); border-radius: 9px; background: rgba(12, 45, 32, .82); color: #fff; font-size: 12px; backdrop-filter: blur(8px); }
+    .image-caption strong { display: block; font-size: 14px; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .service-card { min-height: 185px; padding: 25px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); transition: transform .2s ease, box-shadow .2s ease; }
+    .service-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .service-icon { width: 40px; height: 40px; display: grid; place-items: center; margin-block-end: 17px; border-radius: 10px; background: #edf2e8; color: var(--forest); font-size: 18px; font-weight: 800; }
+    .service-card h3 { margin-block-end: 7px; font-size: 17px; }
+    .service-card p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .portfolio-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; }
+    .portfolio-heading .section-heading { margin-block-end: 0; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-block-end: 37px; }
+    .filter-button { min-height: 38px; padding: 8px 14px; border: 1px solid #dfe5dc; border-radius: 99px; background: transparent; color: #536258; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .filter-button:hover, .filter-button[aria-pressed="true"] { border-color: var(--forest); background: var(--forest); color: #fff; }
+    .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .project-card { overflow: hidden; border: 1px solid var(--line); border-radius: 13px; background: #fff; box-shadow: 0 7px 25px rgba(13,43,29,.045); }
+    .project-card[hidden] { display: none; }
+    .project-image { position: relative; height: 235px; overflow: hidden; background: #e8ece5; }
+    .project-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; }
+    .project-card:hover .project-image img { transform: scale(1.035); }
+    .project-image .project-secondary { position: absolute; right: 11px; bottom: 11px; width: 31%; height: 76px; border: 3px solid #fff; border-radius: 7px; box-shadow: 0 4px 14px rgba(0,0,0,.2); }
+    .project-tag { position: absolute; top: 13px; left: 13px; padding: 6px 10px; border-radius: 99px; background: rgba(255,254,250,.94); color: var(--forest); font-size: 10px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+    .project-details { padding: 20px 21px 22px; }
+    .project-details h3 { margin-block-end: 7px; font-size: 19px; letter-spacing: -.02em; }
+    .project-details p { min-height: 60px; margin-block-end: 14px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .project-link { color: var(--leaf); font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: .05em; }
+    .project-link:hover { color: var(--forest-deep); }
+    .portfolio-footnote { margin-block: 18px 0; color: var(--muted); font-size: 12px; }
+    .completed-work { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 230px 230px; gap: 12px; }
+    .completed-work img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+    .completed-work img:first-child { grid-row: span 2; }
+
+    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; counter-reset: step; }
+    .process-item { position: relative; padding-block-start: 52px; }
+    .process-item::before { position: absolute; top: 0; left: 0; width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid rgba(211,225,164,.45); border-radius: 50%; content: counter(step, decimal-leading-zero); counter-increment: step; color: var(--lime); font-size: 11px; font-weight: 900; }
+    .process-item h3 { margin-block-end: 7px; font-size: 16px; }
+    .process-item p { margin: 0; color: #c9d6cb; font-size: 13px; }
+
+    .quote-layout { display: grid; grid-template-columns: .77fr 1.23fr; align-items: start; gap: clamp(34px, 6vw, 76px); }
+    .quote-section { padding-top: 0; }
+    .home-quote-cta { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+    .home-quote-cta h2 { margin-block-end: 10px; font-size: clamp(32px, 4vw, 46px); letter-spacing: -.045em; line-height: 1.1; }
+    .home-quote-cta p:last-child { max-width: 650px; margin: 0; color: #cfdbd0; }
+    .quote-intro { position: sticky; top: 120px; }
+    .quote-intro h2 { margin-block-end: 15px; font-size: clamp(34px, 4.5vw, 52px); letter-spacing: -.05em; line-height: 1.05; }
+    .quote-intro > p { color: #c9d6cb; font-size: 15px; }
+    .contact-details { display: grid; gap: 14px; margin-block-start: 28px; }
+    .contact-details a, .contact-details address { color: #fff; font-size: 13px; font-style: normal; font-weight: 650; }
+    .contact-label { display: block; margin-block-end: 2px; color: #a9bdad; font-size: 10px; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+    .form-card { padding: clamp(22px, 4vw, 36px); border-radius: 14px; background: var(--paper); color: var(--ink); }
+    .form-heading { margin-block-end: 22px; }
+    .form-heading h3 { margin-block-end: 5px; font-size: 21px; }
+    .form-heading p { margin: 0; color: var(--muted); font-size: 12px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .field { display: grid; gap: 6px; }
+    .field-full { grid-column: 1 / -1; }
+    .field[hidden] { display: none; }
+    .field label { color: #35443a; font-size: 11px; font-weight: 800; }
+    .field input, .field select, .field textarea { width: 100%; min-height: 46px; padding: 11px 12px; border: 1px solid #dfe4dc; border-radius: 6px; background: #fff; color: var(--ink); font-size: 13px; }
+    .field textarea { min-height: 105px; resize: vertical; }
+    .field input::placeholder, .field textarea::placeholder { color: #929b93; }
+    .form-help { grid-column: 1/-1; margin: -4px 0 0; color: var(--muted); font-size: 11px; }
+    .form-grid .button { grid-column: 1 / -1; width: 100%; margin-block-start: 3px; }
+    .form-status { min-height: 20px; margin: 0; color: var(--leaf); font-size: 12px; }
+
+    .footer { padding-block: 31px; background: #092319; color: #d8e1d9; font-size: 12px; }
+    .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .footer-brand { display: flex; align-items: center; gap: 13px; }
+    .footer-brand .brand-logo { width: 100px; height: auto; padding: 4px; border-radius: 5px; background: #fff; }
+    .footer-brand strong { display: block; color: #fff; font-size: 13px; }
+    .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+    .footer-links a:hover { color: var(--lime); }
+    .whatsapp-float { position: fixed; right: 20px; bottom: 20px; z-index: 15; width: 56px; height: 56px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; background: #167447; color: #fff; box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+    .whatsapp-float img { width: 26px; height: 26px; }
+    .whatsapp-float:hover { background: #105a36; }
+
+    @media (max-width: 960px) {
+      .main-nav { gap: 15px; font-size: 12px; }
+      .brand-logo { width: 100px; }
+      .nav-actions .button { padding-inline: 13px; }
+      .project-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 850px) {
+      :root { scroll-padding-top: 76px; }
+      .wrap { width: min(100% - 36px, 600px); }
+      .topline .wrap { min-height: 35px; justify-content: center; text-align: center; }
+      .topline span:first-child { display: none; }
+      .nav-row { min-height: 70px; gap: 10px; }
+      .brand-logo { width: 92px; }
+      .menu-toggle { display: inline-flex; order: 3; }
+      .nav-actions { margin-inline-start: auto; }
+      .nav-actions .button { min-height: 42px; padding: 9px 12px; font-size: 10px; }
+      .main-nav { position: absolute; top: calc(100% + 1px); right: 0; left: 0; display: none; align-items: stretch; gap: 0; padding: 8px 18px 16px; border-bottom: 1px solid var(--line); background: var(--paper); box-shadow: 0 12px 20px rgba(13,43,29,.08); }
+      .main-nav.is-open { width: 100%; display: flex; flex-flow: column nowrap; align-items: stretch; justify-content: flex-start; }
+      .main-nav a { width: 100%; display: block; padding: 12px 0; border-bottom: 1px solid #edf0ea; text-align: left; }
+      .main-nav a:last-child { border-bottom: 0; }
+      .hero { min-height: 590px; background-position: 55% center; }
+      .hero::before { background: linear-gradient(90deg, rgba(7,31,20,.88), rgba(7,31,20,.58)); }
+      .hero-content { padding-block: 76px 95px; }
+      .hero-stamp { right: 18px; bottom: 22px; }
+      .section { padding-block: 66px; }
+      .about-grid, .quote-layout { grid-template-columns: 1fr; }
+      .home-quote-cta { align-items: flex-start; flex-direction: column; }
+      .about-grid { gap: 34px; }
+      .about-image, .about-image img { min-height: 340px; }
+      .proof-points { gap: 14px; }
+      .portfolio-heading { display: block; }
+      .filters { margin-block-start: 23px; margin-block-end: 27px; }
+      .project-image { height: 205px; }
+      .project-details p { min-height: 0; }
+      .process-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 20px; }
+      .quote-intro { position: static; }
+      .quote-layout { gap: 32px; }
+      .completed-work { grid-template-rows: 175px 175px; }
+    }
+    @media (max-width: 520px) {
+      .wrap { width: calc(100% - 32px); }
+      .nav-actions .button { min-height: 40px; padding-inline: 10px; letter-spacing: 0; }
+      .menu-toggle { width: 40px; height: 40px; }
+      .brand-logo { width: 88px; }
+      .hero { min-height: 570px; }
+      h1 { font-size: clamp(42px, 12vw, 58px); }
+      .hero-buttons .button { width: 100%; }
+      .hero-note { gap: 10px 16px; }
+      .services-grid, .project-grid { grid-template-columns: 1fr; }
+      .service-card { min-height: auto; }
+      .project-image { height: 230px; }
+      .proof-points { grid-template-columns: 1fr; }
+      .completed-work { grid-template-rows: 180px 140px 140px; grid-template-columns: 1fr 1fr; }
+      .completed-work img:first-child { grid-column: 1/-1; grid-row: auto; }
+      .process-grid { grid-template-columns: 1fr 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field-full, .form-help, .form-grid .button { grid-column: auto; }
+      .footer-row { align-items: flex-start; }
+      .footer-brand .brand-logo { width: 80px; }
+      .footer-links { gap: 13px; }
+      .whatsapp-float { right: 12px; bottom: 12px; width: 50px; height: 50px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline">
+    <div class="wrap">
+      <span>Custom modular buildings, made for your business</span>
+      <span>Johannesburg · <a href="tel:+27797230311">079 723 0311</a></span>
+    </div>
+  </div>
+  <header class="site-header">
+    <div class="wrap nav-row">
+      <a class="brand" href="index.html" aria-label="TAP MORDULAR home">
+        <img class="brand-logo" src="tap-modular-logo.jpg" alt="TAP MORDULAR company logo">
+      </a>
+      <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
+        <a href="about.html">About</a>
+        <a href="solutions.html">Solutions</a>
+        <a href="projects.html">Projects</a>
+        <a href="how-it-works.html">How it works</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="button" href="quote.html">Request a quote</a>
+      </div>
+      <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="main-navigation" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-content">
+        <p class="eyebrow">TAP MORDULAR · South Africa</p>
+        <h1>Space to make your next move.</h1>
+        <p class="hero-copy">Practical, purpose-built container spaces for work, wellness, healthcare and trade. Choose a custom build to buy or ask us about rental options.</p>
+        <div class="hero-buttons">
+          <a class="button button-lime" href="quote.html">Plan your container</a>
+          <a class="button button-light" href="projects.html">Explore our projects</a>
+        </div>
+        <div class="hero-note">
+          <span>Customised to your use</span>
+          <span>Buy or enquire about renting</span>
+          <span>Johannesburg based</span>
+        </div>
+      </div>
+      <div class="hero-stamp">Thoughtful modular spaces</div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap about-grid">
+        <div class="about-copy">
+          <p class="eyebrow">About TAP MORDULAR</p>
+          <h2>Built around the way you need to work.</h2>
+          <p>We turn shipping containers into useful, well-considered spaces for businesses and communities. From the first conversation through layout and finishes, each project starts with what the space needs to do.</p>
+          <div class="proof-points">
+            <div class="proof-point">Layouts tailored to your operation</div>
+            <div class="proof-point">Options for purchase or rental enquiry</div>
+            <div class="proof-point">Retail, wellness, healthcare and more</div>
+            <div class="proof-point">Delivery and site needs discussed upfront</div>
+          </div>
+          <a class="button" href="about.html">Discover our approach</a>
+        </div>
+        <div class="about-image">
+          <img src="completed-container-project.jpg" alt="Completed modular container project with custom exterior artwork" loading="lazy">
+          <div class="image-caption"><strong>Completed container project</strong>A real project supplied by TAP MORDULAR</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tint" id="solutions">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">Solutions</p>
+          <h2>A flexible space for your next opportunity.</h2>
+          <p>Tell us what you want to do in the space. We can discuss the right layout, openings, interior finish and services for your brief.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card"><div class="service-icon" aria-hidden="true">01</div><h3>Retail &amp; food service</h3><p>Tuck shops, kiosks, takeaways, kota outlets and restaurant spaces designed around serving customers.</p></article>
+          <article class="service-card"><div class="service-icon" aria-hidden="true">02</div><h3>Gyms &amp; wellness</h3><p>Purpose-planned training spaces with room for equipment, member access and your preferred finish.</p></article>
+          <article class="service-card"><div class="service-icon" aria-hidden="true">03</div><h3>Healthcare</h3><p>Clinic concepts with configurable rooms, waiting areas and the practical details your team specifies.</p></article>
+          <article class="service-card"><div class="service-icon" aria-hidden="true">04</div><h3>Offices &amp; site facilities</h3><p>Workspaces, reception areas, site offices and support buildings for changing project needs.</p></article>
+          <article class="service-card"><div class="service-icon" aria-hidden="true">05</div><h3>Cold rooms &amp; chiller units</h3><p>Container-based cooling solutions scoped to your storage needs and required operating conditions.</p></article>
+          <article class="service-card"><div class="service-icon" aria-hidden="true">06</div><h3>Custom modular spaces</h3><p>Have another use in mind? Share your idea and we can discuss a suitable container conversion.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="wrap">
+        <div class="portfolio-heading">
+          <div class="section-heading">
+            <p class="eyebrow">Selected projects &amp; concepts</p>
+            <h2>Real work. More ways to imagine modular.</h2>
+            <p>Browse completed project photography alongside visual concepts that show how a container can be adapted for different businesses.</p>
+          </div>
+        </div>
+        <div class="filters" role="group" aria-label="Filter projects">
+          <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All projects</button>
+          <button class="filter-button" type="button" data-filter="food" aria-pressed="false">Food &amp; retail</button>
+          <button class="filter-button" type="button" data-filter="wellness" aria-pressed="false">Wellness</button>
+          <button class="filter-button" type="button" data-filter="health" aria-pressed="false">Healthcare</button>
+          <button class="filter-button" type="button" data-filter="cooling" aria-pressed="false">Cooling</button>
+        </div>
+        <div class="project-grid" id="project-grid">
+          <article class="project-card" data-category="wellness">
+            <div class="project-image"><img src="Assests/rusternburg gym 2.jpg" alt="Exterior concept for a Rustenburg modular gym with rooftop training area" loading="lazy"><img class="project-secondary" src="Assests/Rusternburg gym 1.jpg" alt="Interior gym layout concept with training equipment" loading="lazy"><span class="project-tag">Wellness</span></div>
+            <div class="project-details"><h3>Rustenburg Gym</h3><p>A multi-level gym concept with a glazed training floor, rooftop activity deck and strong street presence.</p><a class="project-link" href="quote.html?project=Gym%20%2F%20wellness" data-project-type="Gym / wellness">Enquire about a gym build</a></div>
+          </article>
+          <article class="project-card" data-category="food">
+            <div class="project-image"><img src="Assests/Tuck shop 2.jpg" alt="Yellow container tuck shop concept with service counters and customer seating" loading="lazy"><img class="project-secondary" src="Assests/tuckshop 1.jpg" alt="Second view of a container tuck shop and customer counter" loading="lazy"><span class="project-tag">Food &amp; retail</span></div>
+            <div class="project-details"><h3>Tuck Shop</h3><p>A bright takeaway and retail layout with serving windows, canopy cover and space for customer seating.</p><a class="project-link" href="quote.html?project=Tuck%20shop%20%2F%20retail" data-project-type="Tuck shop / retail">Enquire about a tuck shop</a></div>
+          </article>
+          <article class="project-card" data-category="health">
+            <div class="project-image"><img src="Assests/render-20260914_172028.jpg" alt="Modular clinic concept with covered entrance and welcoming waiting area" loading="lazy"><img class="project-secondary" src="Assests/render-20260908_223243.jpg" alt="Additional clinic concept showing modular healthcare facilities" loading="lazy"><span class="project-tag">Healthcare</span></div>
+            <div class="project-details"><h3>Clinic</h3><p>A welcoming clinic concept with a sheltered entry and clear separation between reception and consultation spaces.</p><a class="project-link" href="quote.html?project=Clinic%20%2F%20healthcare" data-project-type="Clinic / healthcare">Enquire about a clinic</a></div>
+          </article>
+          <article class="project-card" data-category="cooling">
+            <div class="project-image"><img src="Assests/render-20260909_210150.jpg.jpg" alt="Container concept supplied for the chiller project" loading="lazy"><img class="project-secondary" src="Assests/render-20260909_205859.jpg" alt="Alternate view supplied for the chiller container project" loading="lazy"><span class="project-tag">Cooling</span></div>
+            <div class="project-details"><h3>Chiller Container</h3><p>A container-based cooling brief can be configured around product type, capacity, temperature range and access needs.</p><a class="project-link" href="quote.html?project=Chiller%20%2F%20cold%20storage" data-project-type="Chiller / cold storage">Enquire about a chiller</a></div>
+          </article>
+          <article class="project-card" data-category="food">
+            <div class="project-image"><img src="Assests/render-20260908_174900.jpg" alt="Container-based kota outlet concept with dedicated customer service opening" loading="lazy"><img class="project-secondary" src="Assests/render-20260908_175126.jpg" alt="Second view of a container kota outlet concept" loading="lazy"><span class="project-tag">Food &amp; retail</span></div>
+            <div class="project-details"><h3>Kota Container</h3><p>A compact food outlet concept with a customer-facing service counter and an efficient work area behind it.</p><a class="project-link" href="quote.html?project=Kota%20%2F%20takeaway%20outlet" data-project-type="Kota / takeaway outlet">Enquire about a kota outlet</a></div>
+          </article>
+          <article class="project-card" data-category="food">
+            <div class="project-image"><img src="Assests/bbaf3a1c-5eac-4e81-9e2d-7e6bc09a01a6-1794557081299-0.jpg" alt="Shisa nyama container restaurant concept with covered outdoor dining" loading="lazy"><span class="project-tag">Food &amp; hospitality</span></div>
+            <div class="project-details"><h3>Shisa Nyama</h3><p>A hospitality concept pairing a container kitchen and dining area with space for an outdoor customer experience.</p><a class="project-link" href="quote.html?project=Shisa%20nyama%20%2F%20restaurant" data-project-type="Shisa nyama / restaurant">Enquire about a shisa nyama</a></div>
+          </article>
+          <article class="project-card" data-category="food">
+            <div class="project-image"><img src="Assests/Porche 2.jpg" alt="Two-storey modular restaurant concept with covered dining and upper-level seating" loading="lazy"><img class="project-secondary" src="Assests/Porche 3.jpg" alt="Alternate view of a two-storey container restaurant with outdoor seating" loading="lazy"><span class="project-tag">Food &amp; hospitality</span></div>
+            <div class="project-details"><h3>Restaurant</h3><p>A distinctive multi-level restaurant concept with sheltered dining, an upper deck and a strong visual identity.</p><a class="project-link" href="quote.html?project=Shisa%20nyama%20%2F%20restaurant" data-project-type="Shisa nyama / restaurant">Enquire about a restaurant</a></div>
+          </article>
+        </div>
+        <p class="portfolio-footnote">Some portfolio images are design visualisations. Final layouts, equipment and specifications are confirmed for each project.</p>
+      </div>
+    </section>
+
+    <section class="section section-tint">
+      <div class="wrap about-grid">
+        <div>
+          <div class="section-heading">
+            <p class="eyebrow">Completed project</p>
+            <h2>From container to a place people use.</h2>
+            <p>These photographs show one completed container project, from its custom exterior to the serving area and final installation.</p>
+          </div>
+          <a class="button" href="quote.html">Start a similar conversation</a>
+        </div>
+        <div class="completed-work" aria-label="Photographs of one completed container project">
+          <img src="completed-container-project.jpg" alt="Completed container project exterior with colourful custom artwork" loading="lazy">
+          <img src="Assests/20201202_120141.jpg" alt="Completed project container from the front" loading="lazy">
+          <img src="Assests/20201202_120206.jpg" alt="Completed project container serving counter and canopy" loading="lazy">
+          <img src="Assests/IMG_20260504_114641.jpg" alt="Completed project container side view" loading="lazy">
+          <img src="Assests/IMG_20260504_114659.jpg" alt="Completed project container with custom exterior artwork" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="process">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">A clear way forward</p>
+          <h2>From your brief to a considered quote.</h2>
+          <p>Good project details make it easier to recommend the right container, scope and delivery plan.</p>
+        </div>
+        <div class="process-grid">
+          <article class="process-item"><h3>Tell us the purpose</h3><p>Share what the space is for and whether you want to buy or explore renting.</p></article>
+          <article class="process-item"><h3>Set the requirements</h3><p>Confirm quantity, approximate size, fit-out, services and intended location.</p></article>
+          <article class="process-item"><h3>Review the scope</h3><p>We can discuss configuration, inclusions, delivery access and next steps.</p></article>
+          <article class="process-item"><h3>Move ahead with clarity</h3><p>Once details are agreed, the project can progress against a defined brief.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark">
+      <div class="wrap home-quote-cta">
+        <div>
+          <p class="eyebrow">Request a quote</p>
+          <h2>Have a project in mind?</h2>
+          <p>Tell us what you need, where it will go and whether you want to buy or explore renting. Our separate quote form gathers the details we need.</p>
+        </div>
+        <a class="button button-lime" href="quote.html">Open the quote form</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-row">
+      <div class="footer-brand">
+        <img class="brand-logo" src="tap-modular-logo.jpg" alt="" loading="lazy">
+        <div><strong>TAP MORDULAR</strong>Custom modular buildings &amp; container conversions</div>
+      </div>
+      <div class="footer-links">
+        <a href="about.html">About</a><a href="solutions.html">Solutions</a><a href="projects.html">Projects</a><a href="contact.html">Contact</a>
+      </div>
+      <span>Johannesburg, South Africa</span>
+    </div>
+  </footer>
+  <a class="whatsapp-float" href="https://wa.me/27797230311?text=Hello%20TAP%20MORDULAR%2C%20I%20would%20like%20to%20discuss%20a%20container%20project." target="_blank" rel="noopener noreferrer" aria-label="Chat with TAP MORDULAR on WhatsApp"><img src="whatsapp-icon.svg" alt=""></a>
+  <script src="site.js" defer></script>
+</body>
+</html>
